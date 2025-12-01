@@ -558,29 +558,28 @@
 .batchmate-card-item { display: none; } 
 
 /* ================================================= */
-/* === BUTTON POSITIONING FOR LAST PAGE ONLY (FINAL GLOBAL FIX) === */
+/* === BUTTON POSITIONING FOR LAST PAGE ONLY (FINAL CLICKABILITY FIX) === */
 /* ================================================= */
 
-/* CRITICAL FIX: Use position: fixed to anchor the button container to the screen (viewport), 
-   bypassing any issues with the parent #batchmates container structure. */
+/* CRITICAL FIX: Anchor the container to the screen (position: fixed) and use a very high Z-index (1000) 
+   to guarantee it is on top of the names footer (z-index 50). */
 #batchmates .nav-button-container.last-page-nav {
-    position: fixed !important; /* Anchors relative to the browser window/viewport */
+    position: fixed !important; /* CRITICAL: Anchors to the screen/viewport */
     bottom: 40px !important;    
     right: 40px !important;     
-    left: auto !important; /* Prevents stretching and ensures alignment from the right */
+    left: auto !important;      /* Prevents stretching */
     
     /* Layout Fix */
-    width: auto !important; /* CRITICAL: Ensures the container shrinks to fit the one visible button */
+    width: auto !important; 
     
     /* Alignment */
     display: flex !important;
-    justify-content: flex-end !important; /* Pushes the remaining button to the right */
+    justify-content: flex-end !important; 
     
-    /* Highest Z-index to ensure it sits above the names footer (z-index 50) */
-    z-index: 90 !important; 
+    z-index: 1000 !important; /* CRITICAL: Must be higher than the footer (50) to ensure clickability */
 }
 
-/* Ensure the Next button is hidden (CSS safeguard) */
+/* Ensure the Next button is hidden */
 #batchmates .nav-button-container.last-page-nav .nav-button-next {
     display: none !important;
 }
@@ -590,18 +589,14 @@
     display: block !important;
 }
 
-/* Ensure the Back button is explicitly shown */
-#batchmates .nav-button-container.last-page-nav .nav-button-back {
-    display: block !important;
-}
 
-
-/* =============== NAMES FOOTER (Remains Correct) =============== */
+/* =============== NAMES FOOTER (Z-Index Confirmation) =============== */
 .names-footer {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
+    /* CONFIRMATION: The button z-index (1000) is much higher than this (50). */
     z-index: 50; 
     display: none; 
     background: linear-gradient(to top, rgba(10, 10, 26, 1), rgba(10, 10, 26, 0.806), transparent 100%);
@@ -614,9 +609,7 @@
     max-width: 1400px;
     margin: 0 auto;
 }
-/* ... (Rest of name-list-container p styles remain correct) ... */
-/* ... (Rest of name-list-container p styles remain correct) ... */
-
+/* ... rest of your styles ... */
       /* ================================================= */
       /* === DESKTOP RESPONSIVENESS (Adjusted Grid) === */
       /* ================================================= */
