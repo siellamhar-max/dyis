@@ -557,24 +557,29 @@
 .batchmates-title { display: none; } 
 .batchmate-card-item { display: none; } 
 
+CSS
+
 /* ================================================= */
-/* === BUTTON POSITIONING FOR LAST PAGE ONLY (FINAL Z-INDEX FIX) === */
+/* === BUTTON POSITIONING FOR LAST PAGE ONLY (FINAL WORKING FIX) === */
 /* ================================================= */
 
-/* CRITICAL FIX: Anchor the container to the screen (position: fixed) and use MAX Z-index (9999) 
-   to ensure clickability over ALL other elements, especially the names footer. */
+/* CRITICAL FIX: The bottom position is increased to move the button completely above the fixed footer. */
 #batchmates .nav-button-container.last-page-nav {
-    position: fixed !important; /* Anchors to the viewport */
-    bottom: 40px !important;    
+    position: fixed !important; 
+    
+    /* CRITICAL CHANGE: Set the button container 150px from the bottom to clear the tall names-footer. */
+    bottom: 150px !important;    
+    
     right: 40px !important;     
-    left: auto !important;      /* Prevents stretching */
+    left: auto !important;      
     
-    /* Layout */
-    width: auto !important; /* Ensures the container shrinks to fit the button */
+    /* Layout and Z-Index remain correct */
+    width: auto !important; 
     display: flex !important;
-    justify-content: flex-end !important; /* Aligns button to the right of the container */
+    justify-content: flex-end !important; 
     
-    z-index: 9999 !important; /* CRITICAL: Must be the highest value */
+    /* Z-index remains maximum to ensure it's visually on top */
+    z-index: 9999 !important; 
 }
 
 /* 1. Hide the Next button */
@@ -586,7 +591,6 @@
 #batchmates .nav-button-container.last-page-nav .nav-button-back {
     display: block !important;
 }
-
 
 /* =============== NAMES FOOTER (Z-Index Confirmation) =============== */
 .names-footer {
