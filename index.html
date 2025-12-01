@@ -185,22 +185,18 @@
         }
 
         /* ================================================= */
-/* === BATCHMATES - LAST PAGE DISPLAY FIX (NEW CODE) === */
+/* === BATCHMATES - LAST PAGE DISPLAY FIX (REVERT TO FLOW) === */
 /* ================================================= */
 
-/* 1. Positioning and Hiding Logic (Applied when JS adds 'last-page-nav') */
+/* 1. Reset the container to flow normally after the names list */
 #batchmates .nav-button-container.last-page-nav {
-    /* CRITICAL FIX: Anchor to screen and clear the tall names footer area */
-    position: fixed !important; 
-    bottom: 200px !important;    /* DEFINITIVE FIX: Ensures button clears the fixed footer */
-    right: 40px !important;     
-    left: auto !important;      
+    /* CRITICAL: Resetting all fixed/absolute properties to allow standard content flow */
+    position: static !important; 
+    bottom: auto !important;
+    right: auto !important;
+    z-index: 1 !important; /* Revert to a normal z-index */
     
-    /* Max Z-index and Layout */
-    width: auto !important; 
-    display: flex !important;
-    justify-content: flex-end !important; 
-    z-index: 9999 !important; /* Guarantees clickability */
+    /* The rest of the container's standard properties are kept (width: 100%, flex, justify-content: flex-end) */
 }
 
 /* Hide the Next button on the last page */
@@ -210,7 +206,7 @@
 
 /* 2. Styling the Back Button to match Home's Next Button */
 #batchmates .nav-button-container.last-page-nav .nav-button-back {
-    /* Applying home next button visual styles */
+    /* Applying desired visual styles */
     background: #9509a1; 
     color: #ffffff;
     padding: 10px 30px; 
@@ -228,7 +224,6 @@
     transform: translateY(-2px); 
     opacity: 1; 
 }
-
 
         /* ================================================= */
         /* === 3. LOADER & ANIMATIONS (Unchanged) === */
@@ -572,7 +567,7 @@
     
     justify-content: flex-start; 
     padding-top: 20px; 
-    padding-bottom: 200px; /* Space for the fixed names footer */
+    padding-bottom: 40px; /* Space for the fixed names footer */
     
     /* --- REVEALED BACKGROUND --- */
     background: url('https://lh3.googleusercontent.com/pw/AP1GczOK_KMrr_GSw_AjCxfCnfa69UVJz46tjdBJe_sLi-ig28sMJck0ahoDbbGyBY5c4tHKGnxwqngW_1IWHDFukO1KpJxe3_OEYCUrSduNpBkI7tny1Lg=w2400'); 
@@ -636,12 +631,12 @@ CSS
 
 /* =============== NAMES FOOTER (Z-Index Confirmation) =============== */
 .names-footer {
-    position: fixed;
+    position: static;
     bottom: 0;
     left: 0;
     right: 0;
     /* CONFIRMATION: The button z-index (1000) is much higher than this (50). */
-    z-index: 50; 
+    z-index: 1; 
     display: none; 
     background: linear-gradient(to top, rgba(10, 10, 26, 1), rgba(10, 10, 26, 0.806), transparent 100%);
     padding: 2rem 5% 3rem;
